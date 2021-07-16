@@ -139,8 +139,25 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- configure the plugin here -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -186,11 +203,15 @@
             </properties>
 
             <dependencies>
+                <!-- https://mvnrepository.com/artifact/com.vaadin/flow-server-production-mode -->
                 <dependency>
                     <groupId>com.vaadin</groupId>
                     <artifactId>flow-server-production-mode</artifactId>
+                    <version>7.0.4</version>
                 </dependency>
+
             </dependencies>
+
 
             <build>
                 <plugins>
@@ -223,6 +244,7 @@
             <build>
                 <plugins>
                     <plugin>
+
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <executions>
